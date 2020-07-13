@@ -8,7 +8,9 @@ from blog.models import Post
 # HTML pages here.
 
 def home(request):
-    return render(request, 'home/home.html')
+    top_post = Post.objects.all().order_by('views').reverse()[0:4]
+    print(top_post)
+    return render(request, 'home/home.html',{ 'top_post' : top_post})
     
 def contact(request):
     if request.method=='POST':

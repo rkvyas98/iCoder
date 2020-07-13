@@ -9,9 +9,10 @@
 
 <div class="container my-3 ">
   <h2 class="blog-post-title">{{post.title}}</h2>
-  <p class="blog-post-meta">{{post.timestamp}} by <a href="/about">{{post.author}}</a></p>
+  <p class="blog-post-meta">{{post.timestamp}} by <a href="/about">{{post.author}}</a> (<span>{{post.views}} views</span>)</p>
+  
   <hr>
-  <p>{{post.content}}</p>
+  <p>{{post.content|safe}}</p>
   <hr>
 </div>
 <div class="container ">
@@ -24,7 +25,7 @@
         <input type="text" class="form-control" name="comment" placeholder="Enter your comment here.">
       </div>
       <input type="hidden" name="postSno" value="{{post.sno}}" id="">
-      <input type="hidden" name="parentsno" value="">
+      <input type="hidden" name="parentSno" value="">
       <button type="submit" class="btn btn-secondary" >Submit</button>
     </form>
   </div>
@@ -74,7 +75,7 @@
               <img class="rounded mx-auto d-block w-100 p-2 border border-dark" src="/static/img/user.png" alt="userImg">  
             </div>
             <div class="col-md-11"> 
-              <strong>{{comment.user.username|capfirst}} </strong> <small class="badge badge-dark"> {{reply.timestamp|naturaltime}}</small>
+              <strong>{{reply.user.username|capfirst}} </strong> <small class="badge badge-dark"> {{reply.timestamp|naturaltime}}</small>
               <div> {{reply.comment}} </div>
             </div>
           </div>
